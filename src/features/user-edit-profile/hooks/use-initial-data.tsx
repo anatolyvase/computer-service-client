@@ -8,7 +8,6 @@ export function useInitialData(reset: UseFormReset<FormData>) {
 
   useEffect(() => {
     if (isSuccess && data) {
-      console.log(data);
       reset({
         firstName: data.data.profile.firstName,
         lastName: data.data.profile.lastName,

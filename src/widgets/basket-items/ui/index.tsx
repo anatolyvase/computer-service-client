@@ -52,7 +52,7 @@ interface Props {
 }
 export const BasketItem = ({ item, basketControls }: Props) => {
   return (
-    <div className="flex bg-content1 p-4 gap-2 rounded-medium">
+    <div className="flex bg-content1 p-4 gap-2 rounded-medium border-1 border-divider">
       <div className="w-full flex justify-between gap-2 h-10">
         <div className="flex flex-col">
           <h4 className="font-bold">{item.name}</h4>

@@ -35,6 +35,7 @@ export function OrderPreview() {
         <CardFooter className="grid gap-2">
           <PlaceOrderModal />
           <Button
+            isDisabled={totalPrice === "0"}
             variant="bordered"
             onPress={() => mutate()}
             isLoading={isPending}

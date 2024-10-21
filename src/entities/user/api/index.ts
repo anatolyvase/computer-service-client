@@ -7,10 +7,7 @@ class UserApi {
   }
 
   async logout() {
-    return authApi.get("/auth/logout").then((res) => {
-      removeFromStorage();
-      return res;
-    });
+    return authApi.get("/auth/logout");
   }
 
   async updateProfile(data: any) {
@@ -42,6 +39,18 @@ class UserApi {
 
   async placeOrder(data: any) {
     return authApi.post("/orders", data);
+  }
+
+  async fetchAddresses() {
+    return authApi.get("/users/me/addresses");
+  }
+
+  async addAddress(data: any) {
+    return authApi.post("/users/me/addresses", data);
+  }
+
+  async removeAddress(addressId: string) {
+    return authApi.delete("/users/me/addresses/" + addressId);
   }
 }
 

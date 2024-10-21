@@ -19,3 +19,13 @@ export interface IBasket {
   count: number;
   items: IBasketItem[];
 }
+
+export interface IAddress {
+  id: string;
+  country: string;
+  state: string;
+  city: string;
+  address1: string;
+  address2: string;
+  zip: string;
+}

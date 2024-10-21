@@ -17,7 +17,7 @@ export function useLogout() {
     "/repairman",
   ];
   const isPrivateRoute = privateRoutes.some((route) =>
-    pathname?.includes(route),
+    pathname.includes(route),
   );
 
   const { mutate } = useMutation({
