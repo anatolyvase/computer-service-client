@@ -1,7 +1,6 @@
 "use client";
 
-import { servicesOptions } from "@/app/(user)/services/page";
-import { IService, ServiceCard } from "@/entities/service";
+import { IService, serviceApi, ServiceCard } from "@/entities/service";
 import { useBasket } from "@/entities/user/hooks/use-basket";
 import { IBasket } from "@/entities/user/types";
 import { useBasketItemAdd } from "@/features/add-in-basket";
@@ -9,10 +8,16 @@ import { useBasketItemRemove } from "@/features/remove-from-basket";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Skeleton } from "@nextui-org/skeleton";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Search, ShoppingCart, Trash } from "lucide-react";
 import React from "react";
 import { SortOptions } from "./sort-options";
+
+export const servicesOptions = queryOptions({
+  queryKey: ["services"],
+  queryFn: serviceApi.fetchServices,
+  staleTime: 1000 * 60 * 5,
+});
 
 export function ServicesList() {
   const { data, isLoading, isError } = useSuspenseQuery(servicesOptions);
