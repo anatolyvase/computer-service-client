@@ -1,5 +1,3 @@
-import React from "react";
-
 import { userApi } from "@/entities/user";
 import { getQueryClient } from "@/shared/helpers/get-query-client";
 import { useMutation } from "@tanstack/react-query";

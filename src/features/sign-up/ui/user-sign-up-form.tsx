@@ -7,7 +7,6 @@ import { Button } from "@nextui-org/button";
 import { Checkbox } from "@nextui-org/checkbox";
 import { Input } from "@nextui-org/input";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { LockIcon, MailIcon, Phone } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
