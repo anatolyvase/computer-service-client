@@ -30,7 +30,7 @@ const protectedRoutes = {
 };
 
 export const config = {
-  API_URL: "http://localhost:4674",
+  API_URL: "https://computer-service-server-theta.vercel.app",
   routes,
   protectedRoutes,
 };
