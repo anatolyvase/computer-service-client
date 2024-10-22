@@ -9,6 +9,7 @@ export const saveTokenStorage = (token: string) => {
   Cookies.set("access_token", token, {
     domain: "computer-service-client.vercel.app",
     sameSite: "strict",
+    expires: 1,
   });
 };
 
