@@ -18,6 +18,4 @@ export const removeFromStorage = () => {
     domain: "computer-service-client.vercel.app",
     sameSite: "strict",
   });
-
-  console.log("delete token, ", Cookies.get("access_token"));
 };

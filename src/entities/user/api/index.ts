@@ -9,7 +9,7 @@ class UserApi {
   }
 
   async logout() {
-    return authApi.get("/auth/logout");
+    return authApi.post("/auth/logout");
   }
 
   async updateProfile(data: UpdateProfile) {
