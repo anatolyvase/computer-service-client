@@ -1,11 +1,9 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
 import { Card, CardHeader } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import { Image } from "@nextui-org/image";
-import { RussianRuble, ShoppingCart } from "lucide-react";
-import Link from "next/link";
+import { RussianRuble } from "lucide-react";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { IService } from "../types";

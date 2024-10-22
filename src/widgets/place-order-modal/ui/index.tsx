@@ -21,12 +21,16 @@ export function PlaceOrderModal() {
   } = useBasket();
   const { data: addresses, isLoading, isError } = useAddresses();
 
-  if (isLoading) {
+  if (isLoading || isServicesLoading) {
     return <Skeleton className="h-full" />;
   }
 
   if (isError) {
     return <div>Ошибка загрузки адресов</div>;
+  }
+
+  if (isServicesError) {
+    return <div>Ошибка загрузки услуг</div>;
   }
 
   return (

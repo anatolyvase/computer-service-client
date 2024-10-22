@@ -3,11 +3,10 @@
 import { useProfile, userApi } from "@/entities/user";
 import { Skeleton } from "@nextui-org/skeleton";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { useInitialData } from "../hooks/use-initial-data";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { AxiosError } from "axios";
 import { LockIcon } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -25,7 +24,6 @@ export function UserEditAccountForm() {
   const {
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onChange",
@@ -36,7 +34,7 @@ export function UserEditAccountForm() {
     },
   });
 
-  const { data: profile, isLoading } = useProfile();
+  const { isLoading } = useProfile();
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormData) =>
@@ -44,8 +42,7 @@ export function UserEditAccountForm() {
     onSuccess: () => {
       toast.success("Ваш пароль был успешно обновлен");
     },
-    onError: (err) => {
-      // @ts-ignore
+    onError: (err: AxiosError) => {
       if (err.status === 409) {
         toast.error("Неверный пароль");
         return;

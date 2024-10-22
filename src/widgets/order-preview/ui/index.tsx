@@ -5,7 +5,7 @@ import { IBasket } from "@/entities/user/types";
 import { useBasketClear } from "@/features/clear-basket";
 import { PlaceOrderModal } from "@/widgets/place-order-modal";
 import { Button } from "@nextui-org/button";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import { Skeleton } from "@nextui-org/skeleton";
 import { RussianRuble } from "lucide-react";
 import React from "react";

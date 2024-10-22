@@ -30,6 +30,7 @@ const formSchema = z.object({
 
 async function signUp(data: FormData) {
   const { remember, ...rest } = data;
+  console.log(remember); // false
   return api.post("/auth/users/sign-up", rest);
 }
 
@@ -62,12 +63,8 @@ export function UserSignUpForm({ onClose }: { onClose: () => void }) {
       toast.success("Вы успешно зарегистрировались!");
       onClose();
     },
-    onError: (error: AxiosError) => {
-      const data = error?.response?.data;
-      const message =
-        ((data as any)?.message as string[])[0] ??
-        "Произошла ошибка при регистрации";
-      toast.error(message);
+    onError: () => {
+      toast.error("Произошла ошибка при регистрации");
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user"] });

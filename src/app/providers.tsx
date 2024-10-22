@@ -4,7 +4,6 @@ import { getQueryClient } from "@/shared/helpers/get-query-client";
 import { NextUIProvider } from "@nextui-org/react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useRouter } from "next/navigation";
 import React from "react";

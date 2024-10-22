@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 
 export const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);

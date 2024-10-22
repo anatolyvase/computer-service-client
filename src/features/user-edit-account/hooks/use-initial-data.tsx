@@ -1,5 +1,5 @@
 import { useProfile } from "@/entities/user";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { UseFormReset } from "react-hook-form";
 import type { FormData } from "../ui/user-edit-account-form";
 

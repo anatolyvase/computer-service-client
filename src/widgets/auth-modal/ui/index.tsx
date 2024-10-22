@@ -1,7 +1,6 @@
 "use client";
 import { UserSignInForm } from "@/features/sign-in";
 import { UserSignUpForm } from "@/features/sign-up";
-import { Checkbox } from "@nextui-org/checkbox";
 import {
   Modal,
   ModalContent,

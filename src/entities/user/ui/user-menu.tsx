@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { IUser } from "../types";
 import { Avatar } from "@nextui-org/avatar";
 import {

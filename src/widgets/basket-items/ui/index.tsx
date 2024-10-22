@@ -10,7 +10,7 @@ import { Minus, Plus, RussianRuble } from "lucide-react";
 import React from "react";
 
 export function BasketItems() {
-  const { data: basket, isLoading, isError } = useBasket();
+  const { data: basket, isLoading } = useBasket();
 
   if (isLoading) {
     return (

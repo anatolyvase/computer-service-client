@@ -4,7 +4,8 @@ import {
   removeFromStorage,
   saveTokenStorage,
 } from "@/shared/helpers/tokens";
-import axios, { CreateAxiosDefaults } from "axios";
+import { isArray } from "@nextui-org/shared-utils";
+import axios, { AxiosError, CreateAxiosDefaults } from "axios";
 
 const options: CreateAxiosDefaults = {
   baseURL: config.API_URL,
@@ -47,7 +48,7 @@ authApi.interceptors.response.use(
 
         return authApi.request(originalRequest);
       } catch (error) {
-        if (errorCatch(error) === "jwt expired") {
+        if (errorCatch(error as AxiosError<ErrorResponse>) === "jwt expired") {
           removeFromStorage();
         }
       }
@@ -56,12 +57,13 @@ authApi.interceptors.response.use(
   },
 );
 
-export const errorCatch = (error: any): string => {
+type ErrorResponse = {
+  message: string | string[];
+  status: number;
+};
+
+export const errorCatch = (error: AxiosError<ErrorResponse>): string => {
   const message = error.response?.data?.message;
 
-  return message
-    ? typeof error.response?.data?.message === "object"
-      ? message[0]
-      : message
-    : error.message;
+  return message ? (isArray(message) ? message[0] : message) : error.message;
 };

@@ -37,12 +37,6 @@ const formSchema = z.object({
 
 export type FormData = z.infer<typeof formSchema>;
 
-const countries = ["Российка Федерация"];
-
-const states = ["Смоленская область"];
-
-const cities = ["Смоленск"];
-
 export function AddressAddForm() {
   const {
     control,

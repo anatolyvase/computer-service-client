@@ -1,5 +1,7 @@
 import { authApi } from "@/shared/axios";
-import { removeFromStorage } from "@/shared/helpers/tokens";
+import type { FormData as OrderData } from "@/features/place-order";
+import type { FormData as AddressData } from "@/features/address-add";
+import type { FormData as UpdateProfile } from "@/features/user-edit-profile";
 
 class UserApi {
   async getMe() {
@@ -10,7 +12,7 @@ class UserApi {
     return authApi.get("/auth/logout");
   }
 
-  async updateProfile(data: any) {
+  async updateProfile(data: UpdateProfile) {
     return authApi.patch("/users/me/profile", data);
   }
 
@@ -37,7 +39,7 @@ class UserApi {
     return authApi.patch("/users/me/basket/clear");
   }
 
-  async placeOrder(data: any) {
+  async placeOrder(data: OrderData) {
     return authApi.post("/orders", data);
   }
 
@@ -45,7 +47,7 @@ class UserApi {
     return authApi.get("/users/me/addresses");
   }
 
-  async addAddress(data: any) {
+  async addAddress(data: AddressData) {
     return authApi.post("/users/me/addresses", data);
   }
 

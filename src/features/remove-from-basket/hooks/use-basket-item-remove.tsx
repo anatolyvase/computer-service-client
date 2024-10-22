@@ -1,6 +1,5 @@
 import { userApi } from "@/entities/user";
 import { getQueryClient } from "@/shared/helpers/get-query-client";
-import { removeFromStorage } from "@/shared/helpers/tokens";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
