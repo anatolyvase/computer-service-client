@@ -4,7 +4,6 @@ import { useProfile, UserMenu } from "@/entities/user";
 import { useBasket } from "@/entities/user/hooks/use-basket";
 import { useLogout } from "@/features/logout";
 import { AuthModal } from "@/widgets/auth-modal";
-import { ThemeToggle } from "@/widgets/header/ui/theme-toggle";
 import { Badge } from "@nextui-org/badge";
 import { Button } from "@nextui-org/button";
 import { NavbarItem } from "@nextui-org/navbar";

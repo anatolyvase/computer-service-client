@@ -2,13 +2,7 @@
 
 import { config } from "@/config";
 import { Button } from "@nextui-org/button";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  useDisclosure,
-} from "@nextui-org/modal";
+import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
