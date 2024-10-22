@@ -14,6 +14,10 @@ export const saveTokenStorage = (token: string) => {
 };
 
 export const removeFromStorage = () => {
-  Cookies.remove("access_token");
-  console.log(Cookies.get("access_token"));
+  Cookies.remove("access_token", {
+    domain: "computer-service-client.vercel.app",
+    sameSite: "strict",
+  });
+
+  console.log("delete token, ", Cookies.get("access_token"));
 };
