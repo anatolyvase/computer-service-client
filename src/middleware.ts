@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// tslint:disable-next-line
 export async function middleware(req: NextRequest, _res: NextResponse) {
   const { url, cookies } = req;
 

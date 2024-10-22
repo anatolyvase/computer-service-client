@@ -24,11 +24,11 @@ export function useLogout() {
     mutationFn: userApi.logout,
     mutationKey: ["logout"],
     onSuccess: () => {
+      removeFromStorage();
+      toast.success("Выход был выполнен успешно");
       if (isPrivateRoute) {
         router.push("/");
       }
-      removeFromStorage();
-      toast.success("Выход был выполнен успешно");
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user"] });
