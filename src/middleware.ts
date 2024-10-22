@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// tslint:disable-next-line
-export async function middleware(req: NextRequest, _res: NextResponse) {
+export async function middleware(req: NextRequest) {
   const { url, cookies } = req;
 
   const refreshToken = cookies.get("refresh_token")?.value;
+  console.log(refreshToken);
+  console.log(req);
 
   if ((url.includes("/admin") || url.includes("/repairman")) && !refreshToken) {
     return NextResponse.error();
