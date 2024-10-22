@@ -4,16 +4,14 @@ export async function middleware(req: NextRequest) {
   const { url, cookies } = req;
 
   const accessToken = cookies.get("access_token")?.value;
-  console.log(accessToken);
-  console.log(req);
 
   if ((url.includes("/admin") || url.includes("/repairman")) && !accessToken) {
     return NextResponse.error();
   }
 
-  if (!accessToken) {
-    return NextResponse.redirect(new URL("/", url));
-  }
+  // if (!accessToken) {
+  //   return NextResponse.redirect(new URL("/", url));
+  // }
 
   return NextResponse.next();
 }

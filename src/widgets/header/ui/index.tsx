@@ -22,7 +22,12 @@ export function Header() {
   ];
 
   return (
-    <Navbar maxWidth="2xl" isBlurred={false} className="bg-background">
+    <Navbar
+      maxWidth="full"
+      isBlurred={false}
+      isBordered
+      className="bg-content1"
+    >
       <NavbarMenuToggle className="lg:hidden" />
       <NavbarBrand
         className="flex-grow-0 mr-4 hidden sm:flex"

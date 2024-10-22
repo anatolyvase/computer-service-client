@@ -64,7 +64,7 @@ export function UserEditProfileForm() {
 
   if (isLoading) {
     return (
-      <div className="space-y-4 w-full">
+      <div className="p-6 pt-0 space-y-4 w-full">
         <Skeleton className="w-full h-14 rounded-medium" />
         <Skeleton className="w-full h-14 rounded-medium" />
         <Skeleton className="w-full h-14 rounded-medium" />
@@ -73,69 +73,76 @@ export function UserEditProfileForm() {
   }
 
   return (
-    <form className="space-y-4 w-full" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="phoneNumber"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={formatPhoneNumber(value)}
-            onBlur={onBlur}
-            onValueChange={(val) => {
-              const cleanedInput = val.replace(/\D/g, "");
-              if (cleanedInput.length <= 10) {
-                onChange(cleanedInput);
+    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      <div className="px-6 space-y-4 w-full">
+        <Controller
+          name="phoneNumber"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={formatPhoneNumber(value)}
+              onBlur={onBlur}
+              onValueChange={(val) => {
+                const cleanedInput = val.replace(/\D/g, "");
+                if (cleanedInput.length <= 10) {
+                  onChange(cleanedInput);
+                }
+              }}
+              isInvalid={!!errors.phoneNumber}
+              errorMessage={errors.phoneNumber && errors.phoneNumber.message}
+              startContent={
+                <span className="text-sm text-default-400">+7</span>
               }
-            }}
-            isInvalid={!!errors.phoneNumber}
-            errorMessage={errors.phoneNumber && errors.phoneNumber.message}
-            startContent={<span className="text-sm text-default-400">+7</span>}
-            endContent={
-              <Phone className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-            }
-            label="Номер телефона"
-            placeholder="(XXX) XXX-XX-XX"
-            type="tel"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="firstName"
-        control={control}
-        render={({ field: { onChange, onBlur, value, ...rest } }) => (
-          <Input
-            {...rest}
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.firstName}
-            errorMessage={errors.firstName && errors.firstName.message}
-            label="Имя"
-            placeholder="Введите Ваше имя"
-            type="text"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="lastName"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.lastName}
-            errorMessage={errors.lastName && errors.lastName.message}
-            label="Фамилия"
-            placeholder="Введите Вашу фамилию"
-            type="text"
-            variant="bordered"
-          />
-        )}
-      />
-      <div className="flex justify-end gap-2">
+              endContent={
+                <Phone className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              }
+              label="Номер телефона"
+              placeholder="(XXX) XXX-XX-XX"
+              type="tel"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="firstName"
+          control={control}
+          render={({ field: { onChange, onBlur, value, ...rest } }) => (
+            <Input
+              {...rest}
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.firstName}
+              errorMessage={errors.firstName && errors.firstName.message}
+              label="Имя"
+              placeholder="Введите Ваше имя"
+              type="text"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="lastName"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.lastName}
+              errorMessage={errors.lastName && errors.lastName.message}
+              label="Фамилия"
+              placeholder="Введите Вашу фамилию"
+              type="text"
+              variant="bordered"
+            />
+          )}
+        />
+      </div>
+      <div className="flex justify-between px-6 py-4 gap-2 border-t border-divider items-center">
+        <p className="text-foreground-400 text-sm">
+          Эти данные нужны чтобы мы знали как к Вам обращаться
+        </p>
         <Button color="primary" type="submit" isLoading={isPending}>
           Сохранить
         </Button>

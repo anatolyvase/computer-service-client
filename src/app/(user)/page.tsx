@@ -11,9 +11,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <PageLayout>
+    <PageLayout className="mt-6">
       <section className="px-6 flex flex-col gap-6 w-full max-w-[1536px]">
-        <HomeHeader />
+        <Hero />
         <ServicesPreviewList />
       </section>
       <section
@@ -41,12 +41,14 @@ export default function Home() {
   );
 }
 
-function HomeHeader() {
+function Hero() {
   return (
     <Card className="relative h-[calc(100vh/2)] grid shadow-none bg-transparent outline-transparent items-center">
       <CardHeader className="absolute top-1/2 -translate-y-1/2 flex flex-col gap-2">
-        <h1 className="text-5xl font-bold text-center">Компьютерный сервис</h1>
-        <h2 className="text-2xl font-medium text-center">
+        <h1 className="text-3xl lg:text-5xl font-bold text-center">
+          Компьютерный сервис
+        </h1>
+        <h2 className="text-lg lg:text-xl font-medium text-center">
           Профессиональная помощь и ремонт любой сложности
         </h2>
         <Button

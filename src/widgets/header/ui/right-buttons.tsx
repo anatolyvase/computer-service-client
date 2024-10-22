@@ -22,9 +22,6 @@ export function RightButtons() {
   if (isLoading) {
     return (
       <>
-        <NavbarItem>
-          <ThemeToggle />
-        </NavbarItem>
         <Skeleton className="flex rounded-medium w-10 h-10" />
         <Skeleton className="flex rounded-full w-12 h-12" />
       </>
@@ -40,7 +37,7 @@ export function RightButtons() {
           authVariant="sign-in"
         />
       </NavbarItem>
-      <NavbarItem className="hidden lg:flex">
+      <NavbarItem>
         <AuthModal triggerVariant="solid" authVariant="sign-up" />
       </NavbarItem>
     </>
@@ -48,9 +45,6 @@ export function RightButtons() {
 
   return (
     <>
-      <NavbarItem>
-        <ThemeToggle />
-      </NavbarItem>
       {data?.data && !isError ? (
         <>
           <NavbarItem>

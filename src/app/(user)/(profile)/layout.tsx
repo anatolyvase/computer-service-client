@@ -1,4 +1,5 @@
-import { UserNavbar } from "@/widgets/user-navbar";
+import { PageHeading } from "@/shared/ui/page-heading";
+import { UserNavbar, UserNavbarModal } from "@/widgets/user-navbar";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -13,9 +14,12 @@ export default function UserProfileLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full max-w-screen-2xl self-center grid lg:grid-cols-[2fr_8fr] px-6">
-      <UserNavbar />
-      {children}
+    <div className="w-full flex flex-col gap-10">
+      <PageHeading title="Личный кабинет" endContent={<UserNavbarModal />} />
+      <div className="gap-8 w-full max-w-screen-2xl mx-auto grid md:grid-cols-[2fr_8fr] px-6">
+        <UserNavbar />
+        {children}
+      </div>
     </div>
   );
 }

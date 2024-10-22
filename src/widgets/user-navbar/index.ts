@@ -1,1 +1,1 @@
-export { UserNavbar } from "./ui";
+export { UserNavbar, UserNavbarModal } from "./ui";

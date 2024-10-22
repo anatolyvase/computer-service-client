@@ -57,7 +57,7 @@ export function UserEditAccountForm() {
 
   if (isLoading) {
     return (
-      <div className="space-y-4 w-full">
+      <div className="p-6 pt-0 space-y-4 w-full">
         <Skeleton className="w-full h-14 rounded-medium" />
         <Skeleton className="w-full h-14 rounded-medium" />
       </div>
@@ -66,47 +66,53 @@ export function UserEditAccountForm() {
 
   return (
     <form className="space-y-4 w-full" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="password"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.password}
-            errorMessage={errors.password && errors.password.message}
-            endContent={
-              <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-            }
-            label="Пароль"
-            placeholder="Введите Ваш пароль"
-            type="password"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="newPassword"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.password}
-            errorMessage={errors.password && errors.password.message}
-            endContent={
-              <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-            }
-            label="Новый пароль"
-            placeholder="Введите Ваш новый пароль"
-            type="password"
-            variant="bordered"
-          />
-        )}
-      />
-      <div className="flex justify-end gap-2">
+      <div className="px-6 space-y-4 w-full">
+        <Controller
+          name="password"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.password}
+              errorMessage={errors.password && errors.password.message}
+              endContent={
+                <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              }
+              label="Пароль"
+              placeholder="Введите Ваш пароль"
+              type="password"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="newPassword"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.password}
+              errorMessage={errors.password && errors.password.message}
+              endContent={
+                <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              }
+              label="Новый пароль"
+              placeholder="Введите Ваш новый пароль"
+              type="password"
+              variant="bordered"
+            />
+          )}
+        />
+      </div>
+      <div className="flex justify-between px-6 py-4 border-t border-divider gap-2 items-center">
+        <p className="text-foreground-400 text-sm">
+          Измените пароль в своей учетной записи если считаете что пора это
+          сделать
+        </p>
         <Button color="primary" type="submit" isLoading={isPending}>
           Сохранить
         </Button>

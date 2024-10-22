@@ -1,4 +1,5 @@
 import { serviceApi } from "@/entities/service";
+import { PageHeading } from "@/shared/ui/page-heading";
 import { PageLayout } from "@/shared/ui/page-layout";
 import { ServicesList } from "@/widgets/services-list";
 import { QueryClient } from "@tanstack/react-query";
@@ -13,6 +14,7 @@ export default async function ServicesPage() {
 
   return (
     <PageLayout>
+      <PageHeading title="Наши услуги" />
       <ServicesList services={services.data} />
     </PageLayout>
   );

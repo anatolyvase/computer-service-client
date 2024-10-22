@@ -71,103 +71,109 @@ export function AddressAddForm() {
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="country"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.country}
-            errorMessage={errors.country && errors.country.message}
-            label="Страна"
-            placeholder="Введите Вашу страну"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="state"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.state}
-            errorMessage={errors.state && errors.state.message}
-            label="Регион"
-            placeholder="Введите Ваш регион"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="city"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.city}
-            errorMessage={errors.city && errors.city.message}
-            label="Город"
-            placeholder="Введите Вашу город"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="address1"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.address1}
-            errorMessage={errors.address1 && errors.address1.message}
-            label="Адрес 1"
-            placeholder="Введите Ваш адрес"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="address2"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.address2}
-            errorMessage={errors.address2 && errors.address2.message}
-            label="Адрес 2"
-            placeholder="Введите Ваш адрес"
-            variant="bordered"
-          />
-        )}
-      />
-      <Controller
-        name="zip"
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-            isInvalid={!!errors.zip}
-            errorMessage={errors.zip && errors.zip.message}
-            label="Почтовый индекс"
-            placeholder="Введите Ваш почтовый индекс"
-            variant="bordered"
-          />
-        )}
-      />
-      <div className="flex justify-end">
+      <div className="space-y-4 px-6">
+        <Controller
+          name="country"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.country}
+              errorMessage={errors.country && errors.country.message}
+              label="Страна"
+              placeholder="Введите Вашу страну"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="state"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.state}
+              errorMessage={errors.state && errors.state.message}
+              label="Регион"
+              placeholder="Введите Ваш регион"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="city"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.city}
+              errorMessage={errors.city && errors.city.message}
+              label="Город"
+              placeholder="Введите Вашу город"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="address1"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.address1}
+              errorMessage={errors.address1 && errors.address1.message}
+              label="Адрес 1"
+              placeholder="Введите Ваш адрес"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="address2"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.address2}
+              errorMessage={errors.address2 && errors.address2.message}
+              label="Адрес 2"
+              placeholder="Введите Ваш адрес"
+              variant="bordered"
+            />
+          )}
+        />
+        <Controller
+          name="zip"
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              isInvalid={!!errors.zip}
+              errorMessage={errors.zip && errors.zip.message}
+              label="Почтовый индекс"
+              placeholder="Введите Ваш почтовый индекс"
+              variant="bordered"
+            />
+          )}
+        />
+      </div>
+      <div className="flex justify-between px-6 py-4 items-center border-t border-divider">
+        <p className="text-foreground-400 text-sm">
+          Адрес нужен будет для оформления заказа, чтобы мастер знал куда ему
+          ехать
+        </p>
         <Button type="submit" color="primary" isLoading={isPending}>
           Добавить
         </Button>
