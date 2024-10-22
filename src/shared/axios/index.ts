@@ -8,7 +8,7 @@ import { isArray } from "@nextui-org/shared-utils";
 import axios, { AxiosError, CreateAxiosDefaults } from "axios";
 
 const options: CreateAxiosDefaults = {
-  baseURL: config.API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL ?? config.API_URL,
   headers: {
     "Content-Type": "application/json",
   },
