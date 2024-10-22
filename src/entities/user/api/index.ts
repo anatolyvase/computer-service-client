@@ -27,6 +27,10 @@ class UserApi {
     return authApi.get("/users/me/basket");
   }
 
+  async fetchOrders() {
+    return authApi.get("/users/me/orders");
+  }
+
   async addServiceToBasket(serviceId: string) {
     return authApi.patch("/users/me/basket/add/" + serviceId);
   }
