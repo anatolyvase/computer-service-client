@@ -3,15 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(req: NextRequest) {
   const { url, cookies } = req;
 
-  const refreshToken = cookies.get("refresh_token")?.value;
-  console.log(refreshToken);
+  const accessToken = cookies.get("access_token")?.value;
+  console.log(accessToken);
   console.log(req);
 
-  if ((url.includes("/admin") || url.includes("/repairman")) && !refreshToken) {
+  if ((url.includes("/admin") || url.includes("/repairman")) && !accessToken) {
     return NextResponse.error();
   }
 
-  if (!refreshToken) {
+  if (!accessToken) {
     return NextResponse.redirect(new URL("/", url));
   }
 

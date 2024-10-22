@@ -24,6 +24,7 @@ export function useLogout() {
     mutationFn: userApi.logout,
     mutationKey: ["logout"],
     onSuccess: () => {
+      console.log("was logout");
       removeFromStorage();
       toast.success("Выход был выполнен успешно");
       if (isPrivateRoute) {
