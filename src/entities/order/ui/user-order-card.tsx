@@ -29,10 +29,8 @@ export function UserOrderCard({ item, controls }: UserOrderCardProps) {
             </span>
           </h4>
           <span className="text-foreground-400">
-            {Object.entries(item.address)
-              .filter(([key]) => key !== "id" && key !== "userId")
-              .map(([, value]) => value)
-              .join(", ")}
+            {item.address.country}, {item.address.state}, {item.address.city},{" "}
+            {item.address.address1}, {item.address.address2}, {item.address.zip}
           </span>
         </div>
         {controls}

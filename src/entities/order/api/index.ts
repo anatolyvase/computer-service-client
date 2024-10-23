@@ -1,8 +1,8 @@
-import { api } from "@/shared/axios";
+import { authApi } from "@/shared/axios";
 
 class OrderApi {
   async cancel(id: string) {
-    return api.patch(`/orders/${id}/cancel`);
+    return authApi.patch(`/orders/${id}/cancel`);
   }
 }
 
