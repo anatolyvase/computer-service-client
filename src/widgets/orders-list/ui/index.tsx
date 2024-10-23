@@ -1,6 +1,13 @@
 "use client";
 
-import { IOrder, useOrders, UserOrderCard } from "@/entities/order";
+import {
+  IOrder,
+  OrderStatus,
+  useOrders,
+  UserOrderCard,
+} from "@/entities/order";
+import { useOrderCancel } from "@/features/cancel-order";
+import { Button } from "@nextui-org/button";
 import { Skeleton } from "@nextui-org/skeleton";
 import React from "react";
 
@@ -21,13 +28,31 @@ export function OrdersList() {
   return (
     <ul className="flex flex-col gap-4 w-full">
       {orders?.data &&
-        orders.data.map((item: IOrder) => (
+        orders?.data.map((item: IOrder) => (
           <UserOrderCard
             key={item.id}
             item={item}
-            controls={<div>controls</div>}
+            controls={<OrderControls id={item.id} status={item.status} />}
           />
         ))}
     </ul>
+  );
+}
+
+function OrderControls({ id, status }: { id: string; status: OrderStatus }) {
+  const { mutate, isPending } = useOrderCancel();
+  return (
+    <Button
+      isDisabled={
+        status === OrderStatus.CANCELED ||
+        status === OrderStatus.FINISHED ||
+        status === OrderStatus.DECLINED
+      }
+      isLoading={isPending}
+      onPress={() => mutate(id)}
+      color="warning"
+    >
+      Отменить
+    </Button>
   );
 }

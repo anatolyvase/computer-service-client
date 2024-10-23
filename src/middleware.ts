@@ -9,9 +9,9 @@ export async function middleware(req: NextRequest) {
     return NextResponse.error();
   }
 
-  // if (!accessToken) {
-  //   return NextResponse.redirect(new URL("/", url));
-  // }
+  if (!accessToken) {
+    return NextResponse.redirect(new URL("/", url));
+  }
 
   return NextResponse.next();
 }
