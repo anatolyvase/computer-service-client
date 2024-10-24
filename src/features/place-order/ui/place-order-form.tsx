@@ -117,6 +117,7 @@ export function PlaceOrderForm({
         </Button>
         <Button
           isLoading={isPending}
+          onPress={onClose}
           color="primary"
           type="submit"
           isDisabled={!addresses.length || !services.length}

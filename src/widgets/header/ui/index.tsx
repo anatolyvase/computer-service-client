@@ -1,3 +1,5 @@
+"use client";
+
 import { config } from "@/config";
 import { Logo } from "@/shared/ui/logo";
 import {
@@ -44,8 +46,15 @@ const links: ILink[] = [
 ];
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
-    <Navbar maxWidth="full" isBlurred={true}>
+    <Navbar
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      maxWidth="full"
+      isBlurred={true}
+    >
       <NavbarMenuToggle className="lg:hidden" />
       <NavbarBrand
         className="flex-grow-0 mr-4 hidden sm:flex"
@@ -83,7 +92,11 @@ export function Header() {
       <NavbarMenu>
         {links.map(({ label, href }, index) => (
           <NavbarMenuItem key={`${label}-${index}`}>
-            <Link className="w-full" href={href}>
+            <Link
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full"
+              href={href}
+            >
               {label}
             </Link>
           </NavbarMenuItem>
