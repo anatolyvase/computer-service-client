@@ -25,6 +25,14 @@ export function BasketItems() {
 
   const data = basket?.data as IBasket;
 
+  if (!data || data.items.length === 0) {
+    return (
+      <div className="flex">
+        <h1 className="text-2xl font-semibold">Корзина пуста</h1>
+      </div>
+    );
+  }
+
   return (
     basket && (
       <div className="flex flex-col gap-2">

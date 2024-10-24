@@ -1,4 +1,4 @@
-import { RightButtons } from "@/widgets/header/ui/right-buttons";
+import { Logo } from "@/shared/ui/logo";
 import {
   Navbar,
   NavbarBrand,
@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/navbar";
 import Link from "next/link";
 import React from "react";
+import { RightButtons } from "./right-buttons";
 
 export function Header() {
   const menuItems = [
@@ -22,19 +23,14 @@ export function Header() {
   ];
 
   return (
-    <Navbar
-      maxWidth="full"
-      isBlurred={false}
-      isBordered
-      className="bg-content1"
-    >
+    <Navbar maxWidth="full" isBlurred={true}>
       <NavbarMenuToggle className="lg:hidden" />
       <NavbarBrand
         className="flex-grow-0 mr-4 hidden sm:flex"
         as={Link}
         href="/"
       >
-        <p className="font-bold">Компьютерный Сервис</p>
+        <Logo />
       </NavbarBrand>
 
       <NavbarContent className="hidden lg:flex gap-8">

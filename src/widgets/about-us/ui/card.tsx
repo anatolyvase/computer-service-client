@@ -1,33 +1,33 @@
-import { Card, CardBody } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
+import React from "react";
 
 export const AboutUsCard = ({
   title,
   desc,
-  num,
+  icon,
 }: {
   title: string;
   desc: string;
-  num: number;
+  icon: React.ReactNode;
 }) => {
   return (
-    <Card>
-      <div className="flex gap-2 h-12 items-center px-3 pt-3">
-        <Chip
-          variant="solid"
-          color="primary"
-          classNames={{
-            content: "p-0 text-medium font-semibold",
-          }}
-          className="min-w-8 max-w-8 text-center p-0 h-8"
-        >
-          {num}
-        </Chip>
-        <h4 className="text-xl font-bold">{title}</h4>
+    <div className="flex gap-4 items-start h-fit px-3 pt-3">
+      <Chip
+        variant="solid"
+        color="primary"
+        radius="md"
+        classNames={{
+          content:
+            "p-0 flex justify-center items-center text-medium font-semibold",
+        }}
+        className="min-w-10 lg:min-w-16 min-h-10 lg:w-16 lg:h-16 text-center p-0 "
+      >
+        {icon}
+      </Chip>
+      <div>
+        <h4 className="lg:text-xl font-bold">{title}</h4>
+        <p className="text-small lg:text-medium">{desc}</p>
       </div>
-      <CardBody>
-        <p>{desc}</p>
-      </CardBody>
-    </Card>
+    </div>
   );
 };

@@ -13,7 +13,7 @@ type UserOrderCardProps = {
 export function UserOrderCard({ item, controls }: UserOrderCardProps) {
   return (
     <Card>
-      <CardHeader className="justify-between px-6 pt-6">
+      <CardHeader className="justify-between px-6 pt-6 relative">
         <div className="flex flex-col gap-2">
           <OrderStatusChip status={item.status} />
           <h4 className="text-2xl">
@@ -33,7 +33,7 @@ export function UserOrderCard({ item, controls }: UserOrderCardProps) {
             {item.address.address1}, {item.address.address2}, {item.address.zip}
           </span>
         </div>
-        {controls}
+        <div className="absolute right-6 top-6">{controls}</div>
       </CardHeader>
       <CardBody className="flex flex-col gap-2 px-6">
         {item.services.map((service) => (
@@ -43,7 +43,7 @@ export function UserOrderCard({ item, controls }: UserOrderCardProps) {
       <CardFooter className="px-6 justify-between pb-6">
         <RepairmanInfo repairman={item.repairman} />
         <h5 className="text-lg">
-          Сумма заказа:{" "}
+          Итого:{" "}
           <span className="text-primary">
             {item.services
               .reduce((acc, item) => acc + item.count * item.price, 0)
@@ -57,20 +57,22 @@ export function UserOrderCard({ item, controls }: UserOrderCardProps) {
 
 function OrderServiceItem({ item }: { item: IOrderItem }) {
   return (
-    <li className="bg-background p-4 h-20 grid grid-cols-[3fr_1fr_1fr_1fr] rounded-medium border-1 border-divider items-center">
+    <li className="bg-background p-4 sm:h-20 grid sm:grid-cols-2 rounded-medium gap-2 border-1 border-divider items-center">
       <div className="flex flex-col">
         <h5 className="text-lg">{item.name}</h5>
-        <p className="text-foreground-400">{item.description}</p>
+        <p className="text-foreground-400 text-nowrap">{item.description}</p>
       </div>
-      <span className="text-sm text-end text-foreground-400">
-        {item.price.toLocaleString("ru-RU")} ₽
-      </span>
-      <span className="text-sm text-end text-foreground-400">
-        {item.count} шт.
-      </span>
-      <span className="text-end">
-        {(item.price * item.count).toLocaleString("ru-RU")} ₽
-      </span>
+      <div className="grid grid-cols-3 items-center">
+        <span className="text-sm sm:text-end text-foreground-400">
+          {item.price.toLocaleString("ru-RU")} ₽
+        </span>
+        <span className="text-sm sm:text-end text-foreground-400">
+          {item.count} шт.
+        </span>
+        <span className="sm:text-end">
+          {(item.price * item.count).toLocaleString("ru-RU")} ₽
+        </span>
+      </div>
     </li>
   );
 }

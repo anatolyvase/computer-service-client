@@ -43,8 +43,9 @@ authApi.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const response = await api.get("/auth/refresh");
-        if (response.data.access_token) console.log("have access token");
-        saveTokenStorage(response.data.access_token);
+        if (response.data.access_token) {
+          saveTokenStorage(response.data.access_token);
+        }
 
         return authApi.request(originalRequest);
       } catch (error) {

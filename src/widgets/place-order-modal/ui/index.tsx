@@ -36,7 +36,11 @@ export function PlaceOrderModal() {
   return (
     addresses && (
       <>
-        <Button onPress={onOpen} color="primary">
+        <Button
+          onPress={onOpen}
+          isDisabled={services?.data?.items.length === 0}
+          color="primary"
+        >
           Оформить заказ
         </Button>
         <Modal

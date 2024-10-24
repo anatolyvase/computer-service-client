@@ -25,10 +25,24 @@ export function OrdersList() {
     );
   }
 
+  const data = orders?.data as IOrder[];
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <h1 className="text-2xl font-semibold">Нет заказов</h1>
+      </div>
+    );
+  }
+
   return (
     <ul className="flex flex-col gap-4 w-full">
-      {orders?.data &&
-        orders?.data.map((item: IOrder) => (
+      {data
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+        )
+        .map((item) => (
           <UserOrderCard
             key={item.id}
             item={item}
@@ -43,6 +57,7 @@ function OrderControls({ id, status }: { id: string; status: OrderStatus }) {
   const { mutate, isPending } = useOrderCancel();
   return (
     <Button
+      size="sm"
       isDisabled={
         status === OrderStatus.CANCELED ||
         status === OrderStatus.FINISHED ||

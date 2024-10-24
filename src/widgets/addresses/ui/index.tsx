@@ -28,16 +28,23 @@ export function AddressesList() {
 
   const data = addresses?.data as IAddress[];
 
+  if (!data || data.length === 0) {
+    return (
+      <div className="space-y-1 p-6 pt-0 text-foreground-300">
+        У вас нет сохраненных адресов
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-1 p-6 pt-0">
-      {data &&
-        data.map((item) => (
-          <AddressItem
-            key={item.id}
-            item={item}
-            controls={<AddressControls id={item.id} />}
-          />
-        ))}
+      {data.map((item) => (
+        <AddressItem
+          key={item.id}
+          item={item}
+          controls={<AddressControls id={item.id} />}
+        />
+      ))}
     </div>
   );
 }
