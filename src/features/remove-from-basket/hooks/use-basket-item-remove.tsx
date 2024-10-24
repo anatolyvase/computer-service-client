@@ -1,6 +1,7 @@
 import { userApi } from "@/entities/user";
 import { getQueryClient } from "@/shared/helpers/get-query-client";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export function useBasketItemRemove() {
@@ -16,7 +17,11 @@ export function useBasketItemRemove() {
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ["basket"] });
     },
-    onError: () => {
+    onError: (err: AxiosError) => {
+      if (err.status === 401) {
+        toast.error("Вы не авторизованы");
+        return;
+      }
       toast.error("Произошла непредвиденная ошибка");
     },
   });

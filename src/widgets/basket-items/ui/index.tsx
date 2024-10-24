@@ -75,7 +75,7 @@ export const BasketItem = ({ item, basketControls }: Props) => {
 };
 
 function BasketControls({ id, count }: { id: string; count: number }) {
-  const { mutate: add, isPending } = useBasketItemAdd();
+  const { mutate: add, isPending: isAddPending } = useBasketItemAdd();
   const { mutate: remove, isPending: isRemovePending } = useBasketItemRemove();
 
   return (
@@ -85,6 +85,7 @@ function BasketControls({ id, count }: { id: string; count: number }) {
         color="primary"
         onPress={() => remove(id)}
         isLoading={isRemovePending}
+        isDisabled={isAddPending}
         isIconOnly
       >
         <Minus />
@@ -94,9 +95,9 @@ function BasketControls({ id, count }: { id: string; count: number }) {
         size="sm"
         color="primary"
         onPress={() => add(id)}
-        isLoading={isPending}
+        isLoading={isAddPending}
         isIconOnly
-        isDisabled={count > 99}
+        isDisabled={count > 99 || isRemovePending}
       >
         <Plus />
       </Button>

@@ -1,5 +1,5 @@
 "use client";
-import { useAddresses, useBasket } from "@/entities/user";
+import { IAddress, useAddresses, useBasket } from "@/entities/user";
 import { PlaceOrderForm } from "@/features/place-order";
 import { Button } from "@nextui-org/button";
 import {
@@ -22,10 +22,11 @@ export function PlaceOrderModal() {
   const { data: addresses, isLoading, isError } = useAddresses();
 
   if (isLoading || isServicesLoading) {
-    return <Skeleton className="h-full" />;
+    return <Skeleton className="h-10 w-full rounded-medium" />;
   }
 
-  if (isError) {
+  const addressesData = addresses?.data as IAddress[];
+  if (isError || !addressesData) {
     return <div>Ошибка загрузки адресов</div>;
   }
 
@@ -34,38 +35,32 @@ export function PlaceOrderModal() {
   }
 
   return (
-    addresses && (
-      <>
-        <Button
-          onPress={onOpen}
-          isDisabled={services?.data?.items.length === 0}
-          color="primary"
-        >
-          Оформить заказ
-        </Button>
-        <Modal
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
-          placement="top-center"
-        >
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalHeader className="flex flex-col gap-1">
-                  Оформить заказ
-                </ModalHeader>
-                <ModalBody>
-                  <PlaceOrderForm
-                    onClose={onClose}
-                    services={services?.data?.items || []}
-                    addresses={addresses.data}
-                  />
-                </ModalBody>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
-      </>
-    )
+    <>
+      <Button
+        onPress={onOpen}
+        isDisabled={services?.data?.items.length === 0}
+        color="primary"
+      >
+        Оформить заказ
+      </Button>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Оформить заказ
+              </ModalHeader>
+              <ModalBody>
+                <PlaceOrderForm
+                  onClose={onClose}
+                  services={services?.data?.items || []}
+                  addresses={addressesData}
+                />
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }

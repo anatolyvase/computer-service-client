@@ -8,7 +8,7 @@ import { useBasketItemRemove } from "@/features/remove-from-basket";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Skeleton } from "@nextui-org/skeleton";
-import { Search, ShoppingCart, Trash } from "lucide-react";
+import { Minus, Plus, Search, ShoppingCart } from "lucide-react";
 import React from "react";
 import { SortOptions } from "./sort-options";
 
@@ -31,12 +31,13 @@ export function ServicesList({ services }: { services: IService[] }) {
           className="max-w-96 justify-self-end"
         />
       </div>
-      <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {services.map((item) => (
           <ServiceCard
             basketControls={
               <BasketControls
                 id={item.id}
+                count={basketData?.items.find((i) => i.id === item.id)?.count}
                 isInBasket={
                   !isBasketError && basketData
                     ? !!basketData.items.find((i) => i.id === item.id)
@@ -45,7 +46,6 @@ export function ServicesList({ services }: { services: IService[] }) {
                 isLoading={basketIsLoading}
               />
             }
-            isDisableGrayscale
             key={item.id}
             item={item}
           />
@@ -57,40 +57,60 @@ export function ServicesList({ services }: { services: IService[] }) {
 
 function BasketControls({
   id,
+  count,
   isInBasket,
   isLoading,
 }: {
   id: string;
+  count?: number;
   isInBasket: boolean;
   isLoading: boolean;
 }) {
-  const { mutate, isPending } = useBasketItemAdd();
+  const { mutate: add, isPending: isAddPending } = useBasketItemAdd();
   const { mutate: remove, isPending: isRemovePending } = useBasketItemRemove();
 
-  return isLoading ? (
-    <Skeleton className="w-10 h-10 rounded-medium" />
-  ) : (
-    <div className="flex gap-2">
-      <Button
-        onPress={() => mutate(id)}
-        isLoading={isPending}
-        variant="flat"
-        color="primary"
-        isIconOnly
-      >
-        <ShoppingCart />
-      </Button>
-      {isInBasket && (
+  if (isLoading) {
+    return <Skeleton className="w-full h-10 rounded-medium" />;
+  }
+
+  if (isInBasket) {
+    return (
+      <div className="flex gap-2 items-center">
         <Button
-          color="danger"
-          isIconOnly
-          variant="flat"
+          size="sm"
+          color="primary"
           onPress={() => remove(id)}
           isLoading={isRemovePending}
+          isDisabled={isAddPending}
+          isIconOnly
         >
-          <Trash />
+          <Minus />
         </Button>
-      )}
+        <span className="w-6 text-center text-lg font-bold">{count || 0}</span>
+        <Button
+          size="sm"
+          color="primary"
+          onPress={() => add(id)}
+          isLoading={isAddPending}
+          isIconOnly
+          isDisabled={(!!count && count > 99) || isRemovePending}
+        >
+          <Plus />
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex gap-2">
+      <Button
+        onPress={() => add(id)}
+        isLoading={isAddPending}
+        startContent={<ShoppingCart />}
+        color="primary"
+      >
+        В корзину
+      </Button>
     </div>
   );
 }
