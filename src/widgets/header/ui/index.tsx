@@ -1,3 +1,4 @@
+import { config } from "@/config";
 import { Logo } from "@/shared/ui/logo";
 import {
   Navbar,
@@ -12,45 +13,66 @@ import Link from "next/link";
 import React from "react";
 import { RightButtons } from "./right-buttons";
 
-export function Header() {
-  const menuItems = [
-    "Главная",
-    "О нас",
-    "Список услуг",
-    "Отзывы",
-    "Наши мастера",
-    "Поддержка",
-  ];
+interface ILink {
+  href: string;
+  label: string;
+}
 
+const { user: routes } = config.routes;
+
+const links: ILink[] = [
+  {
+    href: routes.HOME,
+    label: "Главная",
+  },
+  {
+    href: routes.SERVICES,
+    label: "Услуги",
+  },
+  {
+    href: routes.HOME + "#about-us",
+    label: "О нас",
+  },
+  {
+    href: routes.HOME + "#reviews",
+    label: "Отзывы",
+  },
+  {
+    href: routes.HOME + "#support",
+    label: "Поддержка",
+  },
+];
+
+export function Header() {
   return (
     <Navbar maxWidth="full" isBlurred={true}>
       <NavbarMenuToggle className="lg:hidden" />
       <NavbarBrand
         className="flex-grow-0 mr-4 hidden sm:flex"
         as={Link}
-        href="/"
+        href={routes.HOME}
       >
         <Logo />
       </NavbarBrand>
 
       <NavbarContent className="hidden lg:flex gap-8">
         <NavbarItem>
-          <Link color="foreground" href="/services">
+          <Link href={routes.SERVICES} color="foreground">
             Услуги
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="/#about-us" aria-current="page">
+          <Link href={routes.HOME + "#about-us"} aria-current="page">
             О нас
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/#reviews">
+          <Link href={routes.HOME + "#reviews"} color="foreground">
             Отзывы
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/#support">
+          <Link href={routes.HOME + "#support"} color="foreground">
             Поддержка
           </Link>
         </NavbarItem>
@@ -59,20 +81,10 @@ export function Header() {
         <RightButtons />
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-              }
-              className="w-full"
-              href="#"
-            >
-              {item}
+        {links.map(({ label, href }, index) => (
+          <NavbarMenuItem key={`${label}-${index}`}>
+            <Link className="w-full" href={href}>
+              {label}
             </Link>
           </NavbarMenuItem>
         ))}
