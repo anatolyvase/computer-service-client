@@ -33,10 +33,13 @@ export function PlaceOrderForm({
     },
   });
 
-  const { mutate, isPending } = usePlaceOrder();
+  const { mutate, isPending, isSuccess } = usePlaceOrder();
 
   const onSubmit = (data: FormData) => {
     mutate(data);
+    if (isSuccess) {
+      onClose();
+    }
   };
 
   return (
@@ -117,7 +120,6 @@ export function PlaceOrderForm({
         </Button>
         <Button
           isLoading={isPending}
-          onPress={onClose}
           color="primary"
           type="submit"
           isDisabled={!addresses.length || !services.length}

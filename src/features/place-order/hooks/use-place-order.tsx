@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 export function usePlaceOrder() {
   const queryClient = getQueryClient();
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: (data: FormData) => userApi.placeOrder(data),
     mutationKey: ["place-order"],
     onSuccess: () => {
@@ -20,5 +20,5 @@ export function usePlaceOrder() {
       await queryClient.invalidateQueries({ queryKey: ["basket"] });
     },
   });
-  return { mutate, isPending };
+  return { mutate, isPending, isSuccess };
 }
